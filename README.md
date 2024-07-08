@@ -22,7 +22,7 @@ This project demonstrates an ESP32-based system for generating and decoding NMEA
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/esp32-nmea-data.git
+    git clone https://github.com/Esmail-sarhadi/ESP32-NMEA-Generator-Decoder-WebServer.git
     ```
 
 2. **Open the project in Arduino IDE**:
