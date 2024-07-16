@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="vqq11CWNVkLVnZvjCeZReKc8-FRmgxek2SOWjr35CbY" />
+    <link rel="shortcut icon" type="image/png" href="android-chrome-512x512.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ESP32 NMEA Data Generation and Decoding | ESP32-NMEA-Generator-Decoder-WebServer</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="ESP32 NMEA Data Generation and Decoding" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This project is ideal for those interested in learning about NMEA data formats, web server implementation on ESP32, and data parsing techniques." />
+<meta property="og:description" content="This project is ideal for those interested in learning about NMEA data formats, web server implementation on ESP32, and data parsing techniques." />
+<link rel="canonical" href="https://esmail-sarhadi.github.io/ESP32-NMEA-Generator-Decoder-WebServer/" />
+<meta property="og:url" content="https://esmail-sarhadi.github.io/ESP32-NMEA-Generator-Decoder-WebServer/" />
+<meta property="og:site_name" content="ESP32-NMEA-Generator-Decoder-WebServer" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ESP32 NMEA Data Generation and Decoding" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"This project is ideal for those interested in learning about NMEA data formats, web server implementation on ESP32, and data parsing techniques.","headline":"ESP32 NMEA Data Generation and Decoding","name":"ESP32-NMEA-Generator-Decoder-WebServer","url":"https://esmail-sarhadi.github.io/ESP32-NMEA-Generator-Decoder-WebServer/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/ESP32-NMEA-Generator-Decoder-WebServer/assets/css/style.css?v=1d212fdf96aeaf1ca44456d8e4137d1a1d4b4c09">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/ESP32-NMEA-Generator-Decoder-WebServer/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://esmail-sarhadi.github.io/ESP32-NMEA-Generator-Decoder-WebServer/">ESP32-NMEA-Generator-Decoder-WebServer</a></h1>
+      
+
+      
+<h1 id="esp32-nmea-data-generation-and-decoding">ESP32 NMEA Data Generation and Decoding</h1>
+
+<p>This project demonstrates an ESP32-based system for generating and decoding NMEA (National Marine Electronics Association) data. The ESP32 connects to a Wi-Fi network and hosts a web server that provides a user interface for generating sample NMEA data and uploading NMEA files for decoding.</p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li><strong>Random NMEA Data Generation</strong>: Generates random NMEA sentences (GPGGA) with valid checksums.</li>
+  <li><strong>Web Interface</strong>: Provides a user-friendly web interface to generate and display NMEA data.</li>
+  <li><strong>File Upload and Decoding</strong>: Allows users to upload NMEA files for decoding and displays the parsed data.</li>
+  <li><strong>Data Parsing</strong>: Parses and decodes GPGGA sentences to extract time, latitude, longitude, and satellite count.</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+  <li>ESP32 development board</li>
+  <li>Arduino IDE</li>
+  <li>Wi-Fi network credentials</li>
+</ul>
+
+<h3 id="installation">Installation</h3>
+
+<ol>
+  <li><strong>Clone the repository</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://github.com/Esmail-sarhadi/ESP32-NMEA-Generator-Decoder-WebServer.git
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Open the project in Arduino IDE</strong>:
+    <ul>
+      <li>File -&gt; Open -&gt; Select <code class="language-plaintext highlighter-rouge">esp32-nmea-data.ino</code></li>
+    </ul>
+  </li>
+  <li><strong>Install necessary libraries</strong>:
+    <ul>
+      <li>Install <code class="language-plaintext highlighter-rouge">WiFi</code>, <code class="language-plaintext highlighter-rouge">WebServer</code>, <code class="language-plaintext highlighter-rouge">FS</code>, and <code class="language-plaintext highlighter-rouge">SPIFFS</code> from the Arduino Library Manager if not already installed.</li>
+    </ul>
+  </li>
+  <li><strong>Update Wi-Fi credentials</strong>:
+    <ul>
+      <li>Replace the placeholder values in the code with your actual Wi-Fi SSID and password:
+        <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ssid</span> <span class="o">=</span> <span class="s">"your_SSID"</span><span class="p">;</span>
+ <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"your_PASSWORD"</span><span class="p">;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Upload the code to the ESP32</strong>:
+    <ul>
+      <li>Connect your ESP32 board to your computer and upload the code from the Arduino IDE.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="usage">Usage</h3>
+
+<ol>
+  <li><strong>Connect to Wi-Fi</strong>:
+    <ul>
+      <li>Upon startup, the ESP32 will attempt to connect to the specified Wi-Fi network.</li>
+      <li>Open the Serial Monitor in Arduino IDE to see the connection status and the IP address assigned to the ESP32.</li>
+    </ul>
+  </li>
+  <li><strong>Access the Web Interface</strong>:
+    <ul>
+      <li>Once connected, the ESP32 will start a web server. Open a web browser and navigate to the IP address displayed in the Serial Monitor to access the interface.</li>
+    </ul>
+  </li>
+  <li><strong>Generate NMEA Data</strong>:
+    <ul>
+      <li>Click the “Generate Sample Data” button to generate and display random NMEA data.</li>
+    </ul>
+  </li>
+  <li><strong>Upload NMEA File</strong>:
+    <ul>
+      <li>Click the “Upload NMEA File” button to upload a file from your computer. The decoded data will be displayed.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="project-structure">Project Structure</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">esp32-nmea-data.ino</code>: The main Arduino sketch that initializes the web server and handles requests.</li>
+  <li><code class="language-plaintext highlighter-rouge">index.html</code>: The HTML file served to the client, containing the web interface.</li>
+  <li><code class="language-plaintext highlighter-rouge">data</code>: Directory containing additional files to be served by the ESP32 (if any).</li>
+</ul>
+
+<h2 id="functions">Functions</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">generateRandomNMEAData()</code>: Generates random NMEA sentences.</li>
+  <li><code class="language-plaintext highlighter-rouge">generateRandomTime()</code>: Generates a random time string.</li>
+  <li><code class="language-plaintext highlighter-rouge">generateRandomCoordinate(bool isLatitude)</code>: Generates random latitude or longitude coordinates.</li>
+  <li><code class="language-plaintext highlighter-rouge">generateRandomSatelliteCount()</code>: Generates a random satellite count.</li>
+  <li><code class="language-plaintext highlighter-rouge">calculateChecksum(String nmea)</code>: Calculates the checksum for an NMEA sentence.</li>
+  <li><code class="language-plaintext highlighter-rouge">decodeNMEAData(String nmea_data)</code>: Decodes NMEA data and extracts information from GPGGA sentences.</li>
+  <li><code class="language-plaintext highlighter-rouge">process_gpgga_line(const String&amp; line, GPGGAData&amp; data)</code>: Processes individual GPGGA sentences.</li>
+</ul>
+
+<h2 id="detailed-function-descriptions">Detailed Function Descriptions</h2>
+
+<h3 id="generaterandomnmeadata"><code class="language-plaintext highlighter-rouge">generateRandomNMEAData()</code></h3>
+
+<p>Generates a series of random NMEA sentences (GPGGA) with valid checksums. This function creates 10 GPGGA sentences with randomly generated time, coordinates, and satellite counts.</p>
+
+<h3 id="generaterandomtime"><code class="language-plaintext highlighter-rouge">generateRandomTime()</code></h3>
+
+<p>Generates a random time string in the format HHMMSS. This is used to simulate the time component in NMEA sentences.</p>
+
+<h3 id="generaterandomcoordinatebool-islatitude"><code class="language-plaintext highlighter-rouge">generateRandomCoordinate(bool isLatitude)</code></h3>
+
+<p>Generates a random coordinate string. If <code class="language-plaintext highlighter-rouge">isLatitude</code> is true, it generates a latitude coordinate; otherwise, it generates a longitude coordinate. The coordinates are generated in degrees and minutes, with a random direction (N/S for latitude, E/W for longitude).</p>
+
+<h3 id="generaterandomsatellitecount"><code class="language-plaintext highlighter-rouge">generateRandomSatelliteCount()</code></h3>
+
+<p>Generates a random satellite count between 1 and 12. This simulates the number of satellites tracked by the receiver.</p>
+
+<h3 id="calculatechecksumstring-nmea"><code class="language-plaintext highlighter-rouge">calculateChecksum(String nmea)</code></h3>
+
+<p>Calculates the checksum for an NMEA sentence. The checksum is calculated by XORing all characters between the ‘$’ and ‘*’ characters in the sentence.</p>
+
+<h3 id="decodenmeadatastring-nmea_data"><code class="language-plaintext highlighter-rouge">decodeNMEAData(String nmea_data)</code></h3>
+
+<p>Decodes NMEA data, specifically GPGGA sentences, and extracts information such as time, latitude, longitude, and satellite count. The extracted data is formatted into a human-readable string.</p>
+
+<h3 id="process_gpgga_lineconst-string-line-gpggadata-data"><code class="language-plaintext highlighter-rouge">process_gpgga_line(const String&amp; line, GPGGAData&amp; data)</code></h3>
+
+<p>Processes an individual GPGGA sentence and extracts the relevant data into a <code class="language-plaintext highlighter-rouge">GPGGAData</code> structure. This function splits the sentence into its components and assigns them to the corresponding fields in the <code class="language-plaintext highlighter-rouge">GPGGAData</code> structure.</p>
+<h2 id="profile">Profile</h2>
+
+<p>Check out my GitHub profile: <a href="https://github.com/Esmail-sarhadi" target="_blank">Esmail Sarhadi</a></p>
+
+<h2 id="project-link">Project Link</h2>
+
+<p>View this project on GitHub: <a href="https://github.com/Esmail-sarhadi/ESP32-NMEA-Generator-Decoder-WebServer" target="_blank">ESP32-NMEA-Generator-Decoder-WebServer</a></p>
+
+<h2 id="donation">Donation</h2>
+
+<p>If you find this project helpful, consider making a donation:</p>
+<p><a href="https://nowpayments.io/donation?api_key=REWCYVC-A1AMFK3-QNRS663-PKJSBD2&source=lk_donation&medium=referral" target="_blank">
+     <img src="https://nowpayments.io/images/embeds/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
+</a></p>
+<h2 id="license">License</h2>
+
+<p>This project is licensed under the MIT License - see the <a href="/ESP32-NMEA-Generator-Decoder-WebServer/LICENSE">LICENSE</a> file for details.</p>
+
+<h2 id="acknowledgments">Acknowledgments</h2>
+
+<ul>
+  <li>This project was inspired by the need to understand and work with NMEA data in IoT applications.</li>
+  <li>Special thanks to the open-source community for providing resources and libraries that made this project possible.</li>
+</ul>
+
+
+
+      
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. <a href="https://github.com/Esmail-sarhadi/ESP32-NMEA-Generator-Decoder-WebServer/edit/main/README.md">Improve this page</a>.
+      </div>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
